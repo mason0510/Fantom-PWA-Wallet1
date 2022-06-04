@@ -45,7 +45,7 @@
                         <div class="col">
                             <f-placeholder :content-loaded="!!accountInfo" block :replacement-num-chars="10">
                                 <template v-if="accountInfo">
-                                    <f-t-m-token-value :value="outstandingSFTM" convert no-currency />
+                                    <f-t-m-token-value :value="outstandingSFTM" no-currency />
                                     sFTM
                                 </template>
                             </f-placeholder>
@@ -837,15 +837,20 @@ export default {
                 return;
             }
 
+            const step2 = toBigNumber(this.sftmToken.allowance).isGreaterThanOrEqualTo(
+                this._delegation.outstandingSFTM
+            );
+
             this.showConfirmationWindow({
                 compName: 'defi-repay-s-f-t-m-confirmation',
                 data: {
                     stakerId: this.d_stakerId,
                     outstandingSFTM: this._delegation.outstandingSFTM,
+                    step: step2 ? 2 : 1,
                     // stakerAddress: stakerInfo ? stakerInfo.stakerAddress : '',
                 },
-                stepsCount: 2,
-                steps: ['Allow', 'Confirm', 'Finished'],
+                stepsCount: step2 ? 1 : 2,
+                steps: step2 ? ['Confirm', 'Finished'] : ['Allow', 'Confirm', 'Finished'],
                 windowTitle: 'Repay sFTM',
             });
 

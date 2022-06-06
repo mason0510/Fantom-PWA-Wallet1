@@ -832,14 +832,18 @@ export default {
             });
         },
 
-        repaySFTM() {
+        async repaySFTM() {
             if (!this.canRepaySFTM) {
                 return;
             }
 
-            const step2 = toBigNumber(this.sftmToken.allowance).isGreaterThanOrEqualTo(
-                this._delegation.outstandingSFTM
+            const allowance = await this.$fWallet.getErcTokenAllowance(
+                this.currentAccount.address,
+                this.sftmToken.address,
+                this.$defi.contracts.StakeTokenizerContract
             );
+
+            const step2 = toBigNumber(allowance).isGreaterThanOrEqualTo(this._delegation.outstandingSFTM);
 
             this.showConfirmationWindow({
                 compName: 'defi-repay-s-f-t-m-confirmation',

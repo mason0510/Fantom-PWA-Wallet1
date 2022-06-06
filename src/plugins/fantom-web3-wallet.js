@@ -447,6 +447,24 @@ export class FantomWeb3Wallet {
         return _inHexFormat ? data.data.account.txCount : parseInt(data.data.account.txCount);
     }
 
+    async getErcTokenAllowance(ownerAddress = '', tokenAddress = '', spenderAddress = '') {
+        const data = await this.apolloClient.query({
+            query: gql`
+                query GetErc20TokenAllowance($token: Address!, $owner: Address!, $spender: Address!) {
+                    ercTokenAllowance(token: $token, owner: $owner, spender: $spender)
+                }
+            `,
+            variables: {
+                owner: ownerAddress,
+                token: tokenAddress,
+                spender: spenderAddress,
+            },
+            fetchPolicy: 'network-only',
+        });
+
+        return data.data.ercTokenAllowance;
+    }
+
     /**
      * @param {number} _id
      * @return {Promise<*>}

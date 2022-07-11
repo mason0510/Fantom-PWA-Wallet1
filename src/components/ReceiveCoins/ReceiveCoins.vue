@@ -3,31 +3,14 @@
         <h2 class="align-center" data-focus>Receive Opera FTM</h2>
 
         <f-card class="receive-coins f-card-double-padding">
-            <h3 :id="labelId" class="align-center">Which blockchain are you receiving FTM from?</h3>
-
-            <blockchain-picker
-                disable-e-t-h
-                disable-b-n-b
-                :aria-labelledby="labelId"
-                @blockchain-pick="onBlockchainPick"
-            />
-
-            <component
-                :is="currentComponent"
-                v-bind="currentComponentProperties"
-                @change-component="onChangeComponent"
-            ></component>
+            <ReceiveFTM />
         </f-card>
     </div>
 </template>
 
 <script>
 import FCard from '../core/FCard/FCard.vue';
-import BlockchainPicker from '../BlockchainPicker/BlockchainPicker.vue';
 import ReceiveFTM from './ReceiveFTM.vue';
-import ReceiveBNB from './ReceiveBNB.vue';
-import ReceiveETH from './ReceiveETH.vue';
-import TransactionCompleting from '../TransactionCompleting/TransactionCompleting.vue';
 import { eventBusMixin } from '../../mixins/event-bus.js';
 import { focusElem } from '@/utils/aria.js';
 import { getUniqueId } from '@/utils';
@@ -37,7 +20,7 @@ const DEFAULT_COMPONENT = 'receive-f-t-m';
 export default {
     name: 'ReceiveCoins',
 
-    components: { BlockchainPicker, FCard, ReceiveFTM, ReceiveBNB, ReceiveETH, TransactionCompleting },
+    components: { FCard, ReceiveFTM },
 
     mixins: [eventBusMixin],
 

@@ -101,7 +101,7 @@
 import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import gql from 'graphql-tag';
 import { cloneObject } from '@/utils';
-import { filtersOptions, formatDate, timestampToDate } from '@/filters.js';
+import { filtersOptions, formatDate, formatNumberByLocale, timestampToDate } from '@/filters.js';
 import { WEIToFTM } from '@/utils/transactions.js';
 import appConfig from '../../../../app.config.js';
 import FTokenValue from '@/components/core/FTokenValue/FTokenValue.vue';
@@ -145,6 +145,9 @@ export default {
                                 amount
                                 isDelegationLocked
                                 lockedFromEpoch
+                                pendingRewards {
+                                    amount
+                                }
                             }
                         }
                     }
@@ -234,7 +237,7 @@ export default {
                     width: '160px',
                     cssClass: 'align-center',
                 },
-                /*{
+                {
                     name: 'rewards',
                     label: 'Pending Rewards (FTM)',
                     itemProp: 'delegation.pendingRewards',
@@ -242,7 +245,7 @@ export default {
                     width: '160px',
                     cssClass: 'align-center',
                 },
-                {
+                /*{
                     name: '',
                     label: 'Unlock Date',
                     itemProp: 'delegation.lockedUntil',

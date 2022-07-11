@@ -112,7 +112,7 @@
 import FDataTable from '@/components/core/FDataTable/FDataTable.vue';
 import gql from 'graphql-tag';
 // import { cloneObject } from '@/utils';
-import { filtersOptions, formatDate, timestampToDate } from '@/filters.js';
+import { filtersOptions, formatDate, formatNumberByLocale, timestampToDate } from '@/filters.js';
 import { WEIToFTM } from '@/utils/transactions.js';
 import appConfig from '../../../../app.config.js';
 import { mapGetters } from 'vuex';
@@ -169,21 +169,25 @@ export default {
                     width: '160px',
                     cssClass: 'align-center',
                 },
-                /*{
+                {
                     name: 'rewards',
                     label: 'Pending Rewards (FTM)',
                     itemProp: 'delegation.pendingRewards',
-                    formatter: (_value) => (_value ? formatNumberByLocale(WEIToFTM(_value.amount)) : '-'),
+                    formatter: (_value) => {
+                        const amount = _value ? formatNumberByLocale(WEIToFTM(_value.amount)) : '-';
+
+                        return amount === '0.00' ? '0' : amount;
+                    },
                     width: '160px',
                     cssClass: 'align-center',
                 },
-                {
-                    name: '',
-                    label: 'Unlock Date',
-                    itemProp: 'delegation.lockedUntil',
-                    formatter: (_value) => formatDate(timestampToDate(_value), true, false, { month: 'short' }) || '-',
-                    cssClass: 'align-center',
-                },*/
+                /*                {
+                                    name: '',
+                                    label: 'Unlock Date',
+                                    itemProp: 'delegation.lockedUntil',
+                                    formatter: (_value) => formatDate(timestampToDate(_value), true, false, { month: 'short' }) || '-',
+                                    cssClass: 'align-center',
+                                },*/
                 {
                     name: 'detail',
                     label: 'Action',

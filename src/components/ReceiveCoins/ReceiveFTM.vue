@@ -24,9 +24,6 @@
                         use a different address!
                     </template>
                 </f-copy-button>
-                <button class="btn large light same-size round" title="Show QR Code" @click="$refs.qrWindow.show()">
-                    <icon data="@/assets/svg/monochrome/Options/QR.svg" width="20" height="20" aria-hidden="true" />
-                </button>
             </h3>
         </div>
 
@@ -44,12 +41,11 @@
             </div>
         </div>
 
-        <q-r-code-window ref="qrWindow" :address="currentAccount.address">
-            <f-message type="warning" with-icon>
-                Warning: Use this address to receive Opera FTM only. If you are receiving FTM-ERC20 you need to use a
-                different address!
-            </f-message>
-        </q-r-code-window>
+        <vue-q-r-code-component :text="currentAccount.address" class="qr-code" />
+        <f-message type="warning" with-icon>
+            Warning: Use this address to receive Opera FTM only. If you are receiving FTM-ERC20 you need to use a
+            different address!
+        </f-message>
 
         <f-window
             ref="confirmationWindow"
@@ -78,13 +74,13 @@ import LedgerMessage from '../LedgerMessage/LedgerMessage.vue';
 import { U2FStatus } from '../../plugins/fantom-nano.js';
 import FWindow from '../core/FWindow/FWindow.vue';
 import FCopyButton from '../core/FCopyButton/FCopyButton.vue';
-import QRCodeWindow from '../windows/QRCodeWindow/QRCodeWindow.vue';
 import FMessage from '../core/FMessage/FMessage.vue';
+import VueQRCodeComponent from 'vue-qrcode-component';
 
 export default {
     name: 'ReceiveFTM',
 
-    components: { FMessage, QRCodeWindow, FCopyButton, FWindow, LedgerMessage, PulseLoader },
+    components: { FMessage, FCopyButton, FWindow, LedgerMessage, PulseLoader, VueQRCodeComponent },
 
     props: {
         /** Start verify FTM account */

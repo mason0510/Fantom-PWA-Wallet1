@@ -399,6 +399,12 @@ input.no-style {
     }
 }
 
+.bigger_input_font {
+    .f-inp {
+        font-size: 1.3em;
+    }
+}
+
 @include media-max($bp-small) {
     .narrow-container {
         padding-top: 8px;

@@ -56,7 +56,6 @@ import GovCancelVoteConfirmation from '@/components/GovCancelVoteConfirmation/Go
 import FUniswapPairDetail from '@/components/funi/FUniswapPairDetail/FUniswapPairDetail.vue';
 import FMint from '@/views/FMint/FMint.vue';
 import FSwap from '@/views/FSwap/FSwap.vue';
-import BlockchainPickerForm from '@/components/forms/BlockchainPickerForm.vue';
 import SendTransactionForm from '@/components/forms/SendTransactionForm.vue';
 import DelegationsInfo from '@/components/DelegationsInfo/DelegationsInfo.vue';
 import StakingInfo from '@/components/StakingInfo/StakingInfo.vue';
@@ -146,13 +145,8 @@ export const routes = [
                         // meta: { dontScrollToTop: true },
                     }, */
                     {
-                        name: 'account-blockchain-picker-form',
-                        path: 'send',
-                        component: BlockchainPickerForm,
-                    },
-                    {
                         name: 'account-send-transaction-form',
-                        path: 'send/form',
+                        path: 'send',
                         component: SendTransactionForm,
                         // meta: { dontScrollToTop: true },
                     },

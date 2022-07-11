@@ -11,7 +11,7 @@
             </li>
             <li>
                 <router-link
-                    :to="{ name: 'account-blockchain-picker-form' }"
+                    :to="{ name: 'account-send-transaction-form' }"
                     class="action"
                     title="Send"
                     aria-label="Send FTM"

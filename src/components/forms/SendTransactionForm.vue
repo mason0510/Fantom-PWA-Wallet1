@@ -3,7 +3,6 @@
         <h2 :id="labelId" class="with-back-btn align-center" data-focus>
             <template v-if="token.address"> Send {{ tokenSymbol }} </template>
             <template v-else>Send Opera FTM</template>
-            <f-back-button ref="backButton" :route-name="getBackButtonRoute('account-send-transaction-form')" />
         </h2>
 
         <f-card class="f-card-double-padding">
@@ -30,6 +29,7 @@
                             name="amount"
                             :validator="checkAmount"
                             validate-on-input
+                            class="bigger_input_font"
                         >
                             <template #top="sProps">
                                 <div class="input-label-layout">
@@ -104,7 +104,6 @@
             :window-title="windowTitle"
             :steps-count="1"
             :active-step="1"
-            @cancel-button-click="onCancelButtonClick"
         />
     </div>
 </template>
@@ -123,7 +122,6 @@ import appConfig from '../../../app.config.js';
 import Resolution from '@unstoppabledomains/resolution';
 import { focusElem } from '@/utils/aria.js';
 import { viewHelpersMixin } from '@/mixins/view-helpers.js';
-import FBackButton from '@/components/core/FBackButton/FBackButton.vue';
 import { getUniqueId } from '@/utils';
 import TxConfirmationWindow from '@/components/windows/TxConfirmationWindow/TxConfirmationWindow.vue';
 import Web3 from 'web3';
@@ -138,7 +136,6 @@ export default {
 
     components: {
         TxConfirmationWindow,
-        FBackButton,
         FTokenValue,
         AddressField,
         FCard,
@@ -474,7 +471,6 @@ export default {
         },
 
         onAccountPicked() {
-            this.$refs.backButton.goBack();
             // this.$refs.form.reset(true);
         },
 
@@ -486,12 +482,6 @@ export default {
                     this.maxRemainingErc20TokenBalance > 0 ? this.maxRemainingErc20TokenBalance.toString() : '0';
             } else {
                 this.amount = this.maxRemainingBalance > 0 ? this.maxRemainingBalance.toString() : '0';
-            }
-        },
-
-        onCancelButtonClick(cancelBtnClicked) {
-            if (!cancelBtnClicked) {
-                this.$refs.backButton.goBack();
             }
         },
     },

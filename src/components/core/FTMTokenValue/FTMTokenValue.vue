@@ -8,7 +8,7 @@
             no-currency
             v-bind="$attrs"
         />
-        <span v-if="!noCurrency"> FTM</span>
+        <span v-if="!noCurrency" class="currency"> FTM</span>
     </span>
 </template>
 
@@ -55,3 +55,15 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+@import '../variables';
+
+.ftmtokenvalue {
+    .currency {
+        font-size: 0.7em;
+        color: $light-gray-color;
+        padding-inline-start: 4px;
+    }
+}
+</style>

@@ -21,7 +21,7 @@
                 <div class="row no-collapse">
                     <div class="col-3 f-row-label">Send To</div>
                     <div class="col break-word">
-                        {{ sendToAddress }}
+                        <span class="sendto_address">{{ sendToAddress }}</span>
                         <span
                             v-show="sendToAddressBalance || sendToAccountName"
                             class="f-row-label"
@@ -55,7 +55,14 @@
 
                 <div class="row no-collapse">
                     <div class="col-3 f-row-label">Amount</div>
-                    <div class="col">{{ txData.amount }}</div>
+                    <div class="col amount">
+                        <template v-if="token.address">
+                            <f-token-value :value="txData.amount" :token="token" />
+                        </template>
+                        <template v-else>
+                            <f-t-m-token-value :value="txData.amount" />
+                        </template>
+                    </div>
                 </div>
 
                 <div class="row no-collapse">

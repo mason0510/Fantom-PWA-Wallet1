@@ -27,6 +27,7 @@
         <f-aria-alert />
         <f-network-status />
         <m-m-account-picker-window ref="mmAccountPickerWindow" :mm-account="dMMAccount" />
+        <temporary-message-window v-if="showFWalletWarning" />
     </div>
 </template>
 
@@ -52,11 +53,14 @@ import FNetworkStatus from '@/components/core/FNetworkStatus/FNetworkStatus.vue'
 import MMAccountPickerWindow from '@/components/mm/MMAccountPickerWindow/MMAccountPickerWindow.vue';
 import { mapGetters, mapState } from 'vuex';
 import { switchRTLDirection } from '@/components/RTLSwitch/RTLSwitch.vue';
+import TemporaryMessageWindow from '@/components/windows/TemporaryMessageWindow/TemporaryMessageWindow.vue';
+import appConfig from '../app.config.js';
 
 export default {
     name: 'App',
 
     components: {
+        TemporaryMessageWindow,
         MMAccountPickerWindow,
         FNetworkStatus,
         FAriaAlert,
@@ -69,6 +73,7 @@ export default {
     data() {
         return {
             dMMAccount: '',
+            showFWalletWarning: appConfig.showFWalletWarning,
         };
     },
 

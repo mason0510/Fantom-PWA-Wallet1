@@ -1,3 +1,13 @@
 .tmp-info-window {
     --f-window-padding: 40px;
+
+    h2, strong {
+        color: red;
+    }
+
+    header {
+        .controls {
+            display: none;
+        }
+    }
 }

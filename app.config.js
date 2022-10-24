@@ -71,6 +71,7 @@ const appConfig = {
         // minimal amount of FTM to ETH transfer
         minFTMToTransfer: 50,
     },
+    showFWalletWarning: !!process.env.VUE_APP_FWALLET_WARNING || false,
     disableFLend: true,
     //
     useTestnet: false,

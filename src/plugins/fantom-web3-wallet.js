@@ -677,7 +677,7 @@ export class FantomWeb3Wallet {
      * @return {String}
      */
     getKeystoreFileName(_publicAddress) {
-        return `UTC--${new Date().toISOString()} -- ${_publicAddress}`;
+        return `UTC--${new Date().toISOString()}--${_publicAddress}`.replace(/:/g, '-');
     }
 
     /**

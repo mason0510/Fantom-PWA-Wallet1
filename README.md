@@ -45,3 +45,10 @@ npm run build:chrome-extension:app
 
 Translations for views and components are located in `src/locales` directory.
 
+
+npm cache clear --force
+
+npm install
+
+npm config set registry https://registry.npmjs.org/
+
